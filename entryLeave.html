@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/header.css" />
+	</head>
+
+	<body>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+		<header class="mui-bar mui-bar-nav">
+		    <h1 class="mui-title">入职（离职）申请单</h1>
+		</header>
+		
+	</body>
+<div class="mui-content">
+    <form class="mui-input-group">
+        <div class="mui-input-row">
+            <label>申请类型</label>
+              <select style="font-size: 10px;">
+                  <option value="">请选择</option>
+                  <option value ="">加班</option>
+                  <option value ="">请假</option>
+              </select>
+        </div>
+        <form class="mui-input-group">
+            <div class="mui-input-row">
+                <label>姓名</label>
+                <input type="text" class="mui-input-clear" placeholder="姓名" value="王五">
+            </div>
+            <form class="mui-input-group">
+                <div class="mui-input-row">
+                    <label>入职（离职）项目</label>
+                    <input type="text" class="mui-input-clear" placeholder="入职（离职）项目" value="讯美科技广场">
+                </div>
+                <form class="mui-input-group">
+                    <div class="mui-input-row">
+                        <label>入职（离职）岗位</label>
+                        <input type="text" class="mui-input-clear" placeholder="入职（离职）岗位" value="保洁员">
+                    </div>
+                </form>
+                <form class="mui-input-group">
+                    <div class="mui-input-row">
+                        <label>工资结算方式</label>
+                        <select style="font-size: 10px;">
+                  <option value="">请选择</option>
+                  <option value ="">现金</option>
+                  <option value ="">转账</option>
+              </select>
+                    </div>
+                </form>
+                <form class="mui-input-group">
+                    <div class="mui-input-row">
+                        <label>入职（离职）日期</label>
+                        <input type="date" class="mui-input-clear" placeholder="入职（离职）日期">
+                    </div>
+                </form>
+                <form class="mui-input-group">
+                    <div class="mui-input-row">
+                        <label>入职（离职）说明</label>
+                    </div>
+                        <textarea name="comment" form="usrform" placeholder="请说明"></textarea>                                 </div>
+
+
+                </form>
+                <form class="mui-input-group">
+                    <div class="mui-input-row">
+                        <label>其他</label>
+                    </div>
+                     <textarea name="comment" form="usrform" placeholder="请说明"></textarea>                                 </div>
+
+                </form>
+            </form>
+        </form>
+    </form>
+    <button type="button" class="mui-btn mui-btn-grey mui-btn-block">确定</button>
+</div>
+</html>

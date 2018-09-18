@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/header.css"/>
+	</head>
+ 
+	<body>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			function my(){
+				alert("感谢您对我们 工作的支持!")
+			}
+			function bmy(){
+				var value = prompt('请输入不满意理由，我们将再次改正：', ''); 
+			}
+		</script>
+	</body>
+<header class="mui-bar mui-bar-nav" style="background-color: #2187E7;">
+    <h1 class="mui-title">投诉结果反馈表</h1>
+</header>
+<div class="mui-content">
+    <div class="mui-content">
+        <div class="mui-input-row">
+            <label>投诉结果</label>
+            <input type="text" placeholder="结果" style="color: dodgerblue;" value="对于你投诉的保洁员，我们采取了严重措施，处于罚款100元">
+        </div>
+        <a style="color: red;">您是否对此次投诉结果满意:</a><br />
+        <button type="button" id="my" onclick="my()" class="mui-btn mui-btn-blue mui-btn-outlined">满意</button>
+        <button type="button" id="bmy" onclick="bmy()" class="mui-btn mui-btn-blue mui-btn-outlined">不满意</button>
+    </div>
+</div>
+</html>

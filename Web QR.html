@@ -1,0 +1,255 @@
+
+<!-- saved from url=(0044)http://www.jq22.com/demo/jquery-2vm20160901/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="description" content="QR Code scanner">
+  <meta name="keywords" content="qrcode,qr code,scanner,barcode,javascript">
+  <meta name="language" content="English">
+  <meta name="copyright" content="Lazar Laszlo (c) 2011">
+  <meta name="Revisit-After" content="1 Days">
+  <meta name="robots" content="index, follow">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/llqrcode.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/webqr1.js') }}"></script>
+
+<title>Web QR</title>
+
+<style type="text/css">
+body{
+    width:100%;
+    text-align:center;
+}
+img{
+    border:0;
+}
+#main{
+    margin: 15px auto;
+    background:white;
+    overflow: auto;
+	width: 100%;
+}
+#header{
+    background:white;
+    margin-bottom:15px;
+}
+#mainbody{
+    background: white;
+    width:100%;
+	display:none;
+}
+#footer{
+    background:white;
+}
+#v{
+    width:320px;
+    height:240px;
+}
+#qr-canvas{
+    display:none;
+}
+#qrfile{
+    width:320px;
+    height:240px;
+}
+#mp1{
+    text-align:center;
+    font-size:35px;
+}
+#imghelp{
+    position:relative;
+    left:0px;
+    top:-160px;
+    z-index:100;
+    font:18px arial,sans-serif;
+    background:#f0f0f0;
+	margin-left:35px;
+	margin-right:35px;
+	padding-top:10px;
+	padding-bottom:10px;
+	border-radius:20px;
+}
+.selector{
+    margin:0;
+    padding:0;
+    cursor:pointer;
+    margin-bottom:-5px;
+}
+#outdiv
+{
+    width:320px;
+    height:240px;
+	border: solid;
+	border-width: 3px 3px 3px 3px;
+}
+#result{
+    border: solid;
+	border-width: 1px 1px 1px 1px;
+	padding:20px;
+	width:70%;
+}
+
+ul{
+    margin-bottom:0;
+    margin-right:40px;
+}
+li{
+    display:inline;
+    padding-right: 0.5em;
+    padding-left: 0.5em;
+    font-weight: bold;
+    border-right: 1px solid #333333;
+}
+li a{
+    text-decoration: none;
+    color: black;
+}
+
+#footer a{
+	color: black;
+}
+.tsel{
+    padding:0;
+}
+.report-file {
+            display: block;
+            position: relative;
+            width: 120px;
+            height: 28px;
+            overflow: hidden;
+            border: 1px solid #428bca;
+            background: none repeat scroll 0 0 #428bca;
+            color: #fff;
+            cursor: pointer;
+            text-align: center;
+            float: left;
+            margin-right:5px;
+    }
+    .report-file span {
+            cursor: pointer;
+            display: block;
+            line-height: 28px;
+    }
+    .file-prew {
+            position: absolute;
+            top: 0;
+            left:0;
+            width: 120px;
+            height: 30px;
+            font-size: 100px; 
+            opacity: 0; 
+            filter: alpha(opacity=0);
+            cursor: pointer;
+    }
+</style>
+
+</head>
+
+<body onload="setimg();savehtml();">
+	
+
+<div id="main">
+<div id="header">
+<div style="position:relative;top:+20px;left:0px;"><g:plusone size="medium"></g:plusone></div>
+<p id="mp1">
+保洁签到
+</p>
+
+</div>
+<div id="mainbody" style="display: inline;">
+<table class="tsel" border="0" width="100%">
+<tbody><tr>
+<td valign="top" align="center" width="50%">
+<table class="tsel" border="0">
+<!--<tbody><tr>
+<td><img class="selector" id="qrimg" src="./Web QR_files/cam.png" onclick="setimg()" align="right" style="opacity: 0.1;"></td>
+<td><img class="selector" id="webcamimg" src="./Web QR_files/vid.png" onclick="setwebcam()" align="left" style="opacity: 0.2;"></td></tr>
+
+-->
+	
+<tr><td colspan="2" align="center">
+<div id="outdiv"><video id="v" autoplay=""></video></div></td></tr>
+</tbody></table>
+</td>
+</tr>
+<tr><td colspan="3" align="center">
+<img src="./templates/Web QR_files/down.png">
+</td></tr>
+<tr><td colspan="3" align="center">
+<div type="text" id="result">- scanning -</div>
+</td></tr>
+</tbody></table>
+
+</div>&nbsp;</div>
+<canvas id="qr-canvas" width="800" height="600" style="width: 800px; height: 600px;"></canvas>
+
+<script type="text/javascript">
+	load();
+    //alert(getCookie("filecookie"));
+    //alert(getnickname);
+    //alert(getuserid);
+
+</script>
+<script type="text/javascript">
+    function savehtml(){
+    //alert("savehtml");
+    var getname=getCookie("filecookie");
+    var picname=document.getElementById("file").value.split("\\")[2]
+    var getpic = getCookie("piccookie");
+    var geturl = getname+"&PIC="+ getpic;
+    var getnickname=Octal2Chinese(getCookie("nickname"));
+    var getuserid=getCookie("userid");
+    var getlocation=getCookie("Location");
+    //var getlocation={{request.cookies.get('Location')}}
+    //alert(getlocation);
+    //alert(getCookie("filecookie");
+    //alert(document.getElementById("file").value);
+    if (getCookie("filecookie") != null&&getCookie("filecookie") != ""){
+        //if (document.getElementById("file").value=!""){
+            window.open(fixedEncodeURI(geturl),'_self');
+            setCookie("filecookie","",-1);
+            setCookie("piccookie","",-1);
+        //}
+    }
+}
+    function setCookie(name, value, Days){
+		if(Days == null || Days == ''){
+			Days = 300;
+		}
+		var exp  = new Date();
+		exp.setTime(exp.getTime() + Days*24*60*60*1000);
+		document.cookie = name + "="+ escape (value) + "; path=/;expires=" + exp.toGMTString();
+		//document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+	}
+
+
+	function getCookie(name) {
+		var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+		if(arr=document.cookie.match(reg))
+			return unescape(arr[2]);
+		else
+			return null;
+	}
+
+    function Octal2Chinese(str) {
+    const matches = str.match(/(\\\d{3}){3}/g);
+    if (matches) matches.forEach(match => {
+        let encoded = '';
+        const splits = match.split('\\');
+        splits.forEach(code => !code || (encoded += '%' + parseInt(code, 8).toString(16)));
+        const cChar = decodeURI(encoded);
+        str = str.replace(match, cChar);
+     });
+     return str;
+}
+
+</script>
+
+
+</body>
+
+
+
+	
