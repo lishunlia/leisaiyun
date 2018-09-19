@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="description" content="QR Code scanner">
+		<meta name="keywords" content="qrcode,qr code,scanner,barcode,javascript">
+		<meta name="language" content="English">
+		<meta name="copyright" content="Lazar Laszlo (c) 2011">
+		<meta name="Revisit-After" content="1 Days">
+		<meta name="robots" content="index, follow">
+		<link rel="stylesheet" href="./saomiaoxiaoguo_files/style.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script type="text/javascript" src="./Web QR_files/llqrcode.js"></script>
+		<script type="text/javascript" src="./Web QR_files/webqr.js"></script>
+		<script type="text/javascript" src="./Web QR_files/qiandao.js"></script>
+		<title>Web QR</title>
+		<style type="text/css">
+		html {
+  height: 100%;
+  display: table;
+}
+
+body {
+  display: table-cell;
+  height: 1100px;
+	
+}
+			table,th,td{
+				
+				background-color: #EEEEEE;
+				border: 1px solid black;
+				border-collapse: collapse;
+				
+			}
+			.test{
+				position:absolute;
+	            width: 100%;
+	            height: 60%;
+	            top: 2%;
+			}
+			.tsel{
+				position:absolute;
+				margin-top:auto;
+				width: 100%;
+	            height: 100%;
+				margin-bottom:150px;
+				text-align: left;
+				background-color: white;
+			}
+			
+			#QT_0 {
+    position: absolute;
+    color: rgb(255,255,255);
+    height: 73px;
+    border: 0;
+    left: 0px;
+    top: 39px;
+    z-index: 9999;
+    background-color: rgb(192,192,192);
+    width: 100%;
+    font-family: 微软雅黑;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    z-index: 99999;
+    top: auto;
+    bottom: 2px;
+    position: fixed;
+}
+.kaoqin{
+	position: absolute;
+	width: 100%;
+	top:600px;
+/*	margin-bottom: 20%;*/
+}
+
+#txt1{
+	width: 200px;
+}
+#qr-canvas{
+    display:none;
+}
+#outdiv
+{
+    width:320px;
+    height:240px;
+	border: solid;
+	border-width: 3px 3px 3px 3px;
+}
+#topbar
+{
+
+	margin:0 auto;
+}
+.namebar
+{
+	float: left;
+	margin-left: 20%;
+
+}
+
+</style>
+		
+<script type="text/javascript">
+	
+		function autopic(){
+
+			var input = document.getElementById("demo_input"); 
+			var result= document.getElementById("result"); 
+			var img_area = document.getElementById("img_area"); 
+		
+			if ( typeof(FileReader) === 'undefined' ){ 
+				result.innerHTML = "抱歉，你的浏览器不支持 FileReader，请使用现代浏览器操作！"; 
+				input.setAttribute( 'disabled','disabled' ); 
+			} else { 
+				input.addEventListener( 'change',readFile,false );} 
+			} 
+		
+		function readFile(){ 
+			var file = this.files[0]; 
+		//这里我们判断下类型如果不是图片就返回 去掉就可以上传任意文件 
+			if(!/image\/\w+/.test(file.type)){ 
+				alert("请确保文件为图像类型"); 
+				return false; 
+				} 
+		
+			var reader = new FileReader(); 
+			reader.readAsDataURL(file); 
+		
+			reader.onload = function(e){ 
+		//result.innerHTML = '<img src="'+this.result+'" alt=""/>'; 
+			img_area.innerHTML = '<img src="'+this.result+'" width=100% height="400" alt=""/>'; 
+			} 
+		} 
+</script>
+
+		
+<script type="text/javascript">
+
+// 		function fixedEncodeURI (str) {
+// 		    return encodeURI(str).replace('&amp;', '&');
+// 		}
+// 
+// 		
+// 
+// 		var rr='';
+// 		rr = fixedEncodeURI(window.location);
+
+		function getQueryString(name) { 
+				var uri=window.location.search;
+				uri=uri.replace("&amp;","&").replace("%2526","&").replace("%26","&");
+				//alert(uri);
+		    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 		
+		    uri=uri.substr(1).match(reg); 
+		    uri=uri[2]; 
+		    return uri; 	
+		   	} 
+
+		function getCurrentDate(format) {
+			  var now = new Date();
+			  var year = now.getFullYear(); //得到年份
+			  var month = now.getMonth();//得到月份
+			  var date = now.getDate();//得到日期
+			  var day = now.getDay();//得到周几
+			  var hour = now.getHours();//得到小时
+			  var minu = now.getMinutes();//得到分钟
+			  var sec = now.getSeconds();//得到秒
+			  month = month + 1;
+			  if (month < 10) month = "0" + month;
+			  if (date < 10) date = "0" + date;
+			  if (hour < 10) hour = "0" + hour;
+			  if (minu < 10) minu = "0" + minu;
+			  if (sec < 10) sec = "0" + sec;
+			  var time = "";
+			  //精确到天
+			  if(format==1){
+				time = year + "-" + month + "-" + date;
+			  }
+			  //精确到分
+			  else if(format==2){
+				time = year + "-" + month + "-" + date+ " " + hour + ":" + minu + ":" + sec;
+			  }
+			  return time;
+			};
+
+		
+		function autofill() { 
+				var gongwei=getQueryString('GW');
+				var shijian=getCurrentDate(2);
+		    var bianhao=getQueryString("SYR");
+		    var xiangmu=getQueryString('XMMC');
+		    //alert(gongwei);
+		    //alert(shijian);
+		    //alert(document.getElementById("Txt_1"));
+		    //alert(document.getElementById("Txt_3"));
+		    document.getElementById("Txt_1").value=gongwei;
+		    document.getElementById("Txt_2").value=shijian;
+		    document.getElementById("Txt_3").value=bianhao;
+		    document.getElementById("Txt_4").value=xiangmu;
+		   	 } 				
+</script>
+
+	</head>
+	<body onload="autofill();autopic();">
+		<div>
+    <div name=form>
+		<table class="test">
+<tr>
+	<th colspan="5">					<p align="center">卫生间日常清洁标准</p>
+	<p id=topbar>
+		<div class=namebar><span>项目编号：</span><input  id='Txt_4'  type='TEXT' > </div>
+		<div class=namebar><span>工位编号：</span><input  id='Txt_1'  type='TEXT' >  </div>
+		<div class=namebar><span>员工编号：</span><input  id='Txt_3'  type='TEXT' ></div>
+		<div class=namebar><span>签到时间：</span><input  id='Txt_2'  type='TEXT' > </div>
+		</p>
+
+	
+</th>
+</tr>
+			<tr>
+				
+				<th>序号</th>
+				<th>项目</th>
+				<th>清洁标准</th>
+				<th>自查</th>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>地面</td>
+	
+				<td>无水迹</td>
+				<td><input type="checkbox" ></td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>墙面</td>
+				<td>无乱涂乱画，无灰尘、无蜘蛛、无污渍</td>
+						<td><input type="checkbox" ></td>
+
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>天花</td>
+				<td>无灰尘、无污渍</td>
+					<td><input type="checkbox" ></td>
+
+			</tr>
+			<tr>
+				<td>4</td>
+				<td>坐厕间隔强</td>
+				<td>无灰尘</td>
+				<td><input type="checkbox" ></td>
+
+			</tr>
+			<tr>
+				<td>5</td>
+				<td>坐便器、小便斗</td>
+				<td>无污垢、洁净</td>
+					<td><input type="checkbox" ></td>
+
+			</tr>
+			<tr>
+				<td>6</td>
+				<td>洗手盆及台面、玻璃镜面、水龙头</td
+					>
+				<td>台面无水珠、无污渍、镜面光亮</td>
+						<td><input type="checkbox" ></td>
+
+			</tr>
+			<tr>
+				<td>7</td>
+				<td>灯罩</td>
+				<td>无灰尘、无污渍</td>
+							<td><input type="checkbox" ></td>
+
+			</tr>
+			<tr>
+				<td>8</td>
+				<td>送/排风口</td>
+				<td>无灰尘、无污渍</td>
+					<td><input type="checkbox" ></td>
+
+			</tr>
+			<tr>
+				<td>9</td>
+				<td>废纸篓</td>
+				<td>废纸不超过桶面的1/2，无异味</td>
+						<td><input type="checkbox" ></td>
+
+			</tr>
+			<tr>
+				<td>10</td>
+				<td>喷香机、洗手液箱</td>
+				<td>正常喷香</td>
+					<td><input type="checkbox" ></td>
+
+			</tr>
+			<tr>
+				<td>11</td>
+				<td>纸巾</td>
+				<td>正常时间无断纸现象</td>
+					<td><input type="checkbox" ></td>
+
+			</tr>
+			<tr>
+				<td>12</td>
+				<td>卫生纸架</td>
+				<td>无灰尘、无污渍</td>
+					<td><input type="checkbox" ></td>
+
+			</tr>
+			
+		</table>
+		</div>
+	<div class="kaoqin">
+	<td valign="top" align="center">
+	<table class="tsel" border="0">
+<!--<tbody><tr>
+<td><img class="selector" id="qrimg" src="./Web QR_files/cam.png" onclick="setimg()" align="right" style="opacity: 0.1;"></td>
+<td><img class="selector" id="webcamimg" src="./Web QR_files/vid.png" onclick="setwebcam()" align="left" style="opacity: 0.2;"></td></tr>
+
+-->
+<tr>
+	<th>考勤图片</th>
+</tr>
+	
+<tbody><tr><td colspan="2" align="center">
+<input type="file" value="sdgsdg" id="demo_input" /> 
+<!--<textarea id="result" rows=30 cols=300></textarea> -->
+<p id="img_area"></p> 
+	</tbody></table>
+</td>
+</div>
+</div>
+		<div>
+
+					<label id="QT_0" title="子类遍历控制栏"><label onclick="confirm('请确认提交信息!');">工作签到</label></label>
+
+		</div>
+		
+		<canvas id="qr-canvas" width="800" height="600" style="width: 800px; height: 600px;"></canvas>
+
+
+
+	</body>
+</html>
