@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/header.css"/>
+	
+	</head>
+
+	<body>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+		
+			function check(){
+				alert("您的验证码为：1234")
+				
+				}
+			
+				
+			function check1(){
+				var n = document.getElementById('num').value ;
+				if(n==1234){
+					window.location.href="personalInformation.html"
+				}else{
+                  alert("验证码错误")
+				}
+			}
+			
+			
+			
+	
+		</script>
+	<header class="mui-bar mui-bar-nav" style="background-color: #2187E7;color: ;">
+	    <h1 class="mui-title">注册与绑定</h1>
+	</header>
+	</body>
+	<div class="mui-content">
+	    <form class="mui-input-group">
+    
+     <div class="mui-input-row">
+        <label>姓名</label>
+        <input type="text" class="mui-input-clear" placeholder="姓名">
+    </div>
+     <div class="mui-input-row">
+        <label>身份证号</label>
+        <input type="text" class="mui-input-clear" id="s" placeholder="身份证号">
+    </div>
+     <div class="mui-input-row">
+        <label>绑定手机号</label>
+        <input type="number"  class="mui-input-clear" id="phone" placeholder="绑定手机号">
+    </div>
+    
+    </form>
+      <div class="mui-input-row" style="background-color: white; height: 60px;">
+          <label><input type="text" class="mui-input-clear" placeholder="请输入验证码" id="num" style="width: 150px;" ></label>
+
+       <button type="button" class="mui-btn mui-btn-blue mui-btn-block" style="width: 150px;top: 10px;" onclick="check()">获取验证码</button>
+        
+    </div>
+
+
+<button type="button" class="mui-btn mui-btn-grey mui-btn-block" onclick="check1()">确认提交</button>
+	<div style="text-align:center;">
+		<a href="revisePhone.html" style="color: #2187E7;font-size: 15px; ">修改</a>
+    <a href="relievePhone.html" style="color: #2187E7;font-size: 15px;right: 0px;">解除</a>
+	</div>
+	
+	</div>
+
+</html>
