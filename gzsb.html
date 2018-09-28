@@ -1,0 +1,251 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/header.css"/>
+		<style>
+		
+		.table{
+			width: 100%;
+			
+		}
+			table,th,td{
+				
+				background-color: white;
+				border: 1px solid black;
+				border-collapse: collapse;
+			
+				
+			}
+		
+			.tsel{
+				position:absolute;
+				margin-top:auto;
+				width: 100%;
+	            height: 100%;
+				margin-bottom:150px;
+				text-align: left;
+				background-color: white;
+			}
+	img{border: none;}
+        .mui-input-group .mui-input-row.bd0:after{height: 0;}
+        .mui-input-group .mui-input-row.bd0{border-bottom: #c8c7cc 1px solid;}
+        .mui-card{position: relative;border:#c8c7cc 1px dotted;padding: 8px;-webkit-box-shadow:none;box-shadow: none;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;margin-bottom: 30px;}
+        /*图片背景*/
+        .mui-card-header:after{height: 0;}
+        .camerabox{width: 30%;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;top: 10px;}
+        .beforecamera{padding: 0;margin:0;margin-top: 20px;border:none;}
+        .beforecamera .mui-card-header{width:100%;text-align: center;}
+        .beforecamera .mui-card-header>div{width: 100%;height:100%;font-weight: normal;color: #09f;}
+        /*提交按钮*/
+        .mui-btn{height: 50px;box-sizing: border-box;line-height: 50px;padding: 0;font-size: 16px;}
+        /*图形按钮*/
+        .fileInpBtn{
+            position:absolute;left:2;top: 0;
+            width:100%;height:100%;
+            cursor:pointer;
+            filter:alpha(opacity:0);opacity:0;
+            border-color: orange;
+        }
+			
+		</style>
+		
+	<style>
+	div.file{display:inline-block;width:100%;height:40px;line-height:20px;position:relative;overflow:hidden;color:red}
+	div.file input{position:absolute;top:0px;zoom:1;filter:alpha(opacity=0);opacity:0;font-size:20px;margin-left:-240px}
+	</style>
+
+
+	<script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+		<script type="text/javascript"> 
+		function getPhoneType(){
+    //正则,忽略大小写
+    
+    var pattern_phone = new RegExp("iphone","i");
+    var pattern_android = new RegExp("Android","i");
+    var userAgent = navigator.userAgent.toLowerCase();
+    var isAndroid = pattern_android.test(userAgent);
+    var isIphone = pattern_phone.test(userAgent);
+    if(isAndroid){
+         //capture="camera"
+         $('#fileInpBtn').attr('capture','camera');    
+    }else if(isIphone){
+         $('#fileInpBtn').removeAttr('capture');
+        
+    }         
+}
+		</script>
+		<script src="js/mui.min.js"></script>
+		
+		<script type="text/javascript">
+   function showPicture(imgFile){
+            /*获取上传文件的路径，并赋给img标签*/
+            document.getElementById("newImage").src = window.URL.createObjectURL(imgFile.files[0]);
+        }
+
+
+        
+
+		</script>
+	</head>
+
+	<body onload="getPhoneType();">
+		
+	
+<header class="mui-bar mui-bar-nav">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <h1 class="mui-title">工作上报</h1>
+<!--    <span class="mui-icon mui-icon-bars mui-icon mui-icon-right-nav mui-pull-right"></span>
+--></header>
+<div class="mui-content">
+    <form class="mui-input-group">
+        <div class="mui-input-row">
+            <label>项目编号</label>
+            <input type="text" class="mui-input-clear" placeholder="项目编号">
+        </div>
+        <form class="mui-input-group">
+            <div class="mui-input-row">
+                <label>工位编号</label>
+                <input type="text" class="mui-input-clear" placeholder="工位编号">
+            </div>
+            <form class="mui-input-group">
+                <div class="mui-input-row">
+                    <label>员工编号</label>
+                    <input type="text" class="mui-input-clear" placeholder="员工编号">
+                </div>
+                <form class="mui-input-group">
+                    <div class="mui-input-row">
+                        <label>签到时间</label>
+                        <input type="text" class="mui-input-clear" placeholder="签到时间">
+                    </div>
+                </form>
+            </form>
+        </form>
+    </form>
+
+<form class="mui-input-group">
+    <div class="mui-input-row" style="height: 100%;width: 100%;">
+        <table class="table" >
+        	<tr>
+				
+				<th style="width: 10%;">序号</th>
+				<th style="width: 35%;">项目</th>
+				<th style="40%">清洁标准</th>
+				<th style="width: 15%;" >自查</th>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>地面</td>
+	
+				<td>无水迹</td>
+				<td style="text-align: center;"><input type="checkbox"></td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>墙面</td>
+				<td>无乱涂乱画，无灰尘、无蜘蛛、无污渍</td>
+						<td style="text-align: center;"><input type="checkbox"></td>
+
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>天花</td>
+				<td>无灰尘、无污渍</td>
+					<td style="text-align: center;"><input type="checkbox"></td>
+
+			</tr>
+			<tr>
+				<td>4</td>
+				<td>坐厕间隔强</td>
+				<td>无灰尘</td>
+				<td style="text-align: center;"><input type="checkbox"></td>
+
+			</tr>
+			<tr>
+				<td>5</td>
+				<td>坐便器、小便斗</td>
+				<td>无污垢、洁净</td>
+					<td style="text-align: center;"><input type="checkbox"></td>
+
+			</tr>
+			<tr>
+				<td>6</td>
+				<td>洗手盆及台面、玻璃镜面、水龙头</td>
+				<td>台面无水珠、无污渍、镜面光亮</td>
+						<td style="text-align: center;"><input type="checkbox"></td>
+
+			</tr>
+			<tr>
+				<td>7</td>
+				<td>灯罩</td>
+				<td>无灰尘、无污渍</td>
+							<td style="text-align: center;"><input type="checkbox"></td>
+
+			</tr>
+			<tr>
+				<td>8</td>
+				<td>送/排风口</td>
+				<td>无灰尘、无污渍</td>
+					<td style="text-align: center;"><input type="checkbox"></td>
+
+			</tr>
+			<tr>
+				<td>9</td>
+				<td>废纸篓</td>
+				<td>废纸不超过桶面的1/2，无异味</td>
+						<td style="text-align: center;"><input type="checkbox"></td>
+
+			</tr>
+			<tr>
+				<td>10</td>
+				<td>喷香机、洗手液箱</td>
+				<td>正常喷香</td>
+					<td style="text-align: center;"><input type="checkbox"></td>
+
+			</tr>
+			<tr>
+				<td>11</td>
+				<td>纸巾</td>
+				<td>正常时间无断纸现象</td>
+					<td style="text-align: center;"><input type="checkbox"></td>
+
+			</tr>
+			<tr>
+				<td>12</td>
+				<td>卫生纸架</td>
+				<td>无灰尘、无污渍</td>
+					<td style="text-align: center;"><input type="checkbox"></td>
+
+			</tr>
+        </table>
+    </div>
+
+</form>
+
+<div class="container" style="top: 40px;">    
+
+  <!--身份证主页-->            
+            <div class="mui-card" align="center">
+            	
+                <div class="file" align="center">
+                	<button>上传图片</button>
+                	
+                
+                    <input id="fileInpBtn" type="file" name="upload"  onchange="showPicture(this)" accept="image/*" capture="camera"  multiple> 
+       </div>
+                
+            </div>
+         
+            </div>
+
+ <img class="camerabox" id="newImage"  />
+<button type="button" style="top: 300px;"  class="mui-btn mui-btn-grey mui-btn-block" onclick="checkPhone()">工作上报</button>
+
+</div>
+
+</body>
+</html>

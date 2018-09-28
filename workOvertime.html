@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/header.css"/>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+	</head>
+
+	<body>
+		
+	
+<header class="mui-bar mui-bar-nav">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <h1 class="mui-title">加班（请假）申请单</h1>
+</header>
+<div class="mui-content">
+    <form class="mui-input-group">
+        <div class="mui-input-row">
+            <label>申请类型</label>
+              <select class="se" style="font-size: 10px;">
+                               	
+                                  <option value ="volvo">加班</option>
+                                  <option value ="saab">请假</option>
+                               
+  
+                               </select>
+        </div>
+        <form class="mui-input-group">
+            <div class="mui-input-row">
+                <label>姓名</label>
+                <input type="text" class="mui-input-clear" placeholder="姓名" value="李四">
+            </div>
+            <form class="mui-input-group">
+                <div class="mui-input-row">
+                    <label>员工编号</label>
+                    <input type="text" class="mui-input-clear" placeholder="员工编号" value="456134">
+                </div>
+                <form class="mui-input-group">
+                    <div class="mui-input-row">
+                        <label>部门名称</label>
+                        <input type="text" class="mui-input-clear" placeholder="部门名称" value="保洁">
+                    </div>
+                    <form class="mui-input-group">
+                        <div class="mui-input-row">
+                            <label>岗位名称</label>
+                            <input type="text" class="mui-input-clear" placeholder="岗位名称" value="保洁员">
+                        </div>
+                        <form class="mui-input-group">
+                            <div class="mui-input-row">
+                                <label>加班（请假）类型</label>
+                                
+                               <select style="font-size: 10px;">
+                               	<option value="">--请选择--</option>
+                                  <option value ="volvo">日常</option>
+                                  <option value ="saab">周末</option>
+                                  <option value="opel">节假日</option>
+  
+                               </select>
+                            </div>
+                            <form class="mui-input-group">
+                                <div class="mui-input-row">
+                                    <label>加班（请假）日期</label>
+                                    <input type="datetime-local" class="mui-input-clear" placeholder="加班（请假）日期">
+                                </div>
+                            </form>
+                            <form class="mui-input-group">
+                                <div class="mui-input-row">
+                                    <label>加班（请假）原因</label>
+                                </div>
+                                  <textarea name="comment" form="usrform" placeholder="请填写原因"></textarea>                                 </div>
+                            </form>
+                        </form>
+                    </form>
+                </form>
+            </form>
+        </form>
+    </form>
+    <button type="button" class="mui-btn mui-btn-grey mui-btn-block">确定</button>
+</div>
+</body>
+</html>

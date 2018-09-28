@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/header.css"/>
+		<script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+			<style type="text/css">   
+       img{border: none;}
+        .mui-input-group .mui-input-row.bd0:after{height: 0;}
+        .mui-input-group .mui-input-row.bd0{border-bottom: #c8c7cc 1px solid;}
+        .mui-card{position: relative;border:#c8c7cc 1px dotted;padding: 8px;-webkit-box-shadow:none;box-shadow: none;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;margin-bottom: 30px;}
+        /*图片背景*/
+        .mui-card-header:after{height: 0;}
+        .camerabox{width: 30%;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;}
+        .beforecamera{padding: 0;margin:0;margin-top: 20px;border:none;}
+        .beforecamera .mui-card-header{width:100%;text-align: center;}
+        .beforecamera .mui-card-header>div{width: 100%;height:100%;font-weight: normal;color: #09f;}
+        /*提交按钮*/
+        .mui-btn{height: 50px;box-sizing: border-box;line-height: 50px;padding: 0;font-size: 16px;}
+        /*图形按钮*/
+        .fileInpBtn{
+            position:absolute;left:2;top: 0;
+            width:100%;height:100%;
+            cursor:pointer;
+            filter:alpha(opacity:0);opacity:0;
+            border-color: orange;
+        }
+        /*.camerabox{
+            position:absolute;left:2;top: 0;
+            border-color: red;
+        }*/
+  
+        
+</style>   
+		<script type="text/javascript"> 
+		function getPhoneType(){
+    //正则,忽略大小写
+    
+    var pattern_phone = new RegExp("iphone","i");
+    var pattern_android = new RegExp("Android","i");
+    var userAgent = navigator.userAgent.toLowerCase();
+    var isAndroid = pattern_android.test(userAgent);
+    var isIphone = pattern_phone.test(userAgent);
+    if(isAndroid){
+         //capture="camera"
+         $('#fileInpBtn').attr('capture','camera');
+         
+    }else if(isIphone){
+         $('#fileInpBtn').removeAttr('capture');
+        
+    }         
+}
+		</script>
+			<style>
+	div.file{display:inline-block;width:100%;height:40px;line-height:20px;position:relative;overflow:hidden;color:red}
+	div.file input{position:absolute;top:0px;zoom:1;filter:alpha(opacity=0);opacity:0;font-size:20px;margin-left:-240px}
+	</style>
+
+	</head>
+		
+
+	<body onload="getPhoneType();">
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>    
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+	
+        function showPicture(imgFile){
+            
+            /*获取上传文件的路径，并赋给img标签*/
+            document.getElementById("newImage").src = window.URL.createObjectURL(imgFile.files[0]);
+        }
+
+  
+		</script>
+<header class="mui-bar mui-bar-nav">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <h1 class="mui-title">投诉申请单</h1>
+</header>
+	</body>
+	<div class="mui-content">
+	    <form class="mui-input-group">
+    <div class="mui-input-row">
+        <label>您的姓名</label>
+        <input type="text" class="mui-input-clear" placeholder="您的姓名">
+    </div>
+     <div class="mui-input-row">
+        <label>手机号码</label>
+        <input type="text" class="mui-input-clear" id="phone" placeholder="手机号码">
+    </div>
+     <div class="mui-input-row">
+        <label>投诉对象</label>
+        <input type="text" class="mui-input-clear" id="s" placeholder="投诉对象">
+    </div>
+    <form class="mui-input-group">
+        <div class="mui-input-row">
+            <label>投诉问题</label>
+             <select style="font-size: 10px;">
+                               	</span>
+                               	<option value="">--请选择--</option>
+                                <option value ="volvo">保洁效果差</option>
+                                <option value ="saab">服务态度差</option>
+                               
+  
+                               </select>
+                               
+        </div>
+    </form>
+     <form class="mui-input-group">
+                                <div class="mui-input-row">
+                                    <label>投诉原因</label>
+                                </div>
+                                  <textarea name="comment" form="usrform" placeholder="请填写原因"></textarea>                                 </div>
+                            </form>
+    <form class="mui-input-group">
+        <form class="mui-input-group">
+      
+      </form>
+        </form>
+    </form>
+     
+    
+</form>
+<form class="mui-input-group">
+    <div class="mui-input-row">
+        <label style="font-size: 15px;">投诉图片</label>
+    </div>
+</form>
+<div class="container" style="top: 40px;">    
+
+  <div class="mui-card" align="center">
+            	
+                <div class="file" align="center">
+                	<button>上传图片</button>
+                	
+                
+                    <input id="fileInpBtn" type="file" name="upload"  onchange="showPicture(this)" accept="image/*" capture="camera"  multiple> 
+       </div>
+                
+            </div>
+         
+            </div>
+
+ <img class="camerabox" id="newImage"  />
+
+
+<button type="button" style="top: 300px;"  class="mui-btn mui-btn-grey mui-btn-block" onclick="checkPhone()">确定投诉</button>
+	
+	
+	</div>
+
+</html>
